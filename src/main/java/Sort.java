@@ -75,30 +75,39 @@ public class Sort {
 
         ArrayContainer arr = new ArrayContainer();
 
-        int n = 10000;
-
-        arr.generateArray(n);
+        arr.generateArray(100);
         System.out.println(stalinSort(arr.arr));
         System.out.println(Arrays.toString(arr.arr));
 
-        TimeIt selectionTimer = new TimeIt(
-                () -> arr.generateArray(n),
-                () -> selectionSort(arr.arr)
-        );
+        for (int i = 0; i < 1000; ++i) {
+            selectionSort(arr.arr);
+            insertionSort(arr.arr);
+            stalinSort(arr.arr);
+        }
 
-        TimeIt insertionTimer = new TimeIt(
-                () -> arr.generateArray(n),
-                () -> insertionSort(arr.arr)
-        );
+        for (int i = 100; i <= 2000; i += 100) {
+            int n = i;
+            TimeIt selectionTimer = new TimeIt(
+                    () -> arr.generateArray(n),
+                    () -> selectionSort(arr.arr)
+            );
 
-        TimeIt stalinTimer = new TimeIt(
-                () -> arr.generateArray(n),
-                () -> stalinSort(arr.arr)
-        );
+            TimeIt insertionTimer = new TimeIt(
+                    () -> arr.generateArray(n),
+                    () -> insertionSort(arr.arr)
+            );
 
-        System.out.println(selectionTimer.run(100) / 1000000.0);
-        System.out.println(insertionTimer.run(100) / 1000000.0);
-        System.out.println(stalinTimer.run(100) / 1000000.0);
+            TimeIt stalinTimer = new TimeIt(
+                    () -> arr.generateArray(n),
+                    () -> stalinSort(arr.arr)
+            );
+
+            long selectionTime = selectionTimer.run(100);
+            long insertionTime = insertionTimer.run(100);
+            long stalinTime = stalinTimer.run(100);
+
+            System.out.printf("%d\t%f\t%f\t%f\n", i, selectionTime / 1000000.0, insertionTime / 1000000.0, stalinTime / 1000000.0);
+        }
     }
 
 }
