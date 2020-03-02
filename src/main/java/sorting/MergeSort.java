@@ -39,19 +39,20 @@ public class MergeSort<T extends Comparable<T>> implements Sorter<T> {
         }
 
         List<T> list = new ArrayList<>();
-        while (!left.isEmpty() && !right.isEmpty()) {
-            if (left.get(left.size()-1).compareTo(right.get(right.size()-1)) <= 0) {
-                list.add(left.remove(left.size()-1));
+        int leftIdx = 0, rightIdx = 0;
+        while (leftIdx < left.size() && rightIdx < right.size()) {
+            T leftVal = left.get(leftIdx);
+            T rightVal = right.get(rightIdx);
+            if (leftVal.compareTo(rightVal) <= 0) {
+                list.add(leftVal);
+                leftIdx++;
             } else {
-                list.add(right.remove(right.size()-1));
+                list.add(rightVal);
+                rightIdx++;
             }
         }
-        while (!left.isEmpty()) {
-            list.add(left.remove(left.size()-1));
-        }
-        while (!right.isEmpty()) {
-            list.add(right.remove(right.size()-1));
-        }
+        list.addAll(left.subList(leftIdx, left.size()));
+        list.addAll(right.subList(rightIdx, right.size()));
         return list;
     }
 }
