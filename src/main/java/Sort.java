@@ -27,7 +27,8 @@ public class Sort {
                 new InsertionSort<>(),
                 new StalinSort<>(),
                 new MergeSort<>(),
-                new QuickSort<>()
+                new QuickSort<>(),
+                new EnhancedQuickSort<>()
         );
 
         // Run a few times to get JIT compiler warmed up

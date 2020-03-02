@@ -1,26 +1,24 @@
 package sorting;
 
+import java.util.Collections;
 import java.util.List;
 
-public class QuickSort<T extends Comparable<T>> implements Sorter<T> {
-    @Override
-    public boolean isInPlace() {
-        return true;
-    }
+public class EnhancedQuickSort<T extends Comparable<T>> extends QuickSort<T> {
 
-    @Override
-    public List<T> sort(List<T> arr) {
-        if (arr.size() <= 1) {
-            return arr;
+    private List<T> recursiveSort(List<T> arr) {
+        if (arr.size() <= 5) {
+            Sorter<T> sorter = new InsertionSort<>();
+            return sorter.sort(arr);
         }
 
         int pivotIdx = partition(arr);
-        sort(arr.subList(0, pivotIdx));
-        sort(arr.subList(pivotIdx+1, arr.size()));
+        recursiveSort(arr.subList(0, pivotIdx));
+        recursiveSort(arr.subList(pivotIdx+1, arr.size()));
 
         return arr;
     }
 
+    @Override
     int partition(List<T> arr) {
         int i = -1;
 
@@ -39,4 +37,12 @@ public class QuickSort<T extends Comparable<T>> implements Sorter<T> {
 
         return i+1;
     }
+
+    @Override
+    public List<T> sort(List<T> arr) {
+        Collections.shuffle(arr);
+        return recursiveSort(arr);
+    }
+
+
 }
