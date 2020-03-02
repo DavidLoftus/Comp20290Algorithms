@@ -9,8 +9,8 @@ public class Sort {
         arr[j] = val;
     }
 
-    private static void swap(List<Integer> arr, int i, int j) {
-        int val = arr.get(i);
+    private static <T> void swap(List<T> arr, int i, int j) {
+        T val = arr.get(i);
         arr.set(i, arr.get(j));
         arr.set(j, val);
     }
@@ -139,6 +139,37 @@ public class Sort {
         }
     }
 
+    public static <T extends Comparable<T>> List<T> quickSort(List<T> arr) {
+        if (arr.size() <= 1) {
+            return arr;
+        }
+
+        int pivotIdx = partition(arr);
+        quickSort(arr.subList(0, pivotIdx));
+        quickSort(arr.subList(pivotIdx+1, arr.size()));
+
+        return arr;
+    }
+
+    private static <T extends Comparable<T>> int partition(List<T> arr) {
+        int i = -1;
+
+        T pivot = arr.get(arr.size()-1);
+
+        for (int j = 0; j < arr.size(); ++j) {
+            if (arr.get(j).compareTo(pivot) < 0) {
+                ++i;
+                // Swap arr[i] and arr[j]
+                swap(arr, i, j);
+            }
+        }
+
+        // Swap arr[i+1] and arr[head]
+        swap(arr, i+1, arr.size()-1);
+
+        return i+1;
+    }
+
     public static void main(String[] args) {
 
         ArrayContainer arr = new ArrayContainer();
@@ -178,16 +209,23 @@ public class Sort {
                     () -> mergeSort(arr.list)
             );
 
+            TimeIt quickTimer = new TimeIt(
+                    () -> arr.generateList(n),
+                    () -> mergeSort(arr.list)
+            );
+
             long selectionTime = selectionTimer.run(100);
             long insertionTime = insertionTimer.run(100);
             long stalinTime = stalinTimer.run(100);
             long mergeTime = mergeTimer.run(100);
+            long quickTime = mergeTimer.run(100);
 
-            System.out.printf("%d\t%f\t%f\t%f\t%f\n", i,
+            System.out.printf("%d\t%f\t%f\t%f\t%f\t%f\n", i,
                     selectionTime / 1000000.0,
                     insertionTime / 1000000.0,
                     stalinTime / 1000000.0,
-                    mergeTime / 1000000.0);
+                    mergeTime / 1000000.0,
+                    quickTime / 1000000.0);
         }
     }
 
