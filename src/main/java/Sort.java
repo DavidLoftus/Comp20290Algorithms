@@ -1,13 +1,6 @@
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Sort {
-
-    private static void swap(int[] arr, int i, int j) {
-        int val = arr[i];
-        arr[i] = arr[j];
-        arr[j] = val;
-    }
 
     private static <T> void swap(List<T> arr, int i, int j) {
         T val = arr.get(i);
@@ -15,11 +8,11 @@ public class Sort {
         arr.set(j, val);
     }
 
-    public static int[] selectionSort(int[] arr) {
-        for (int i = 0; i < arr.length-1; ++i) {
+    public static <T extends Comparable<T>> List<T> selectionSort(List<T> arr) {
+        for (int i = 0; i < arr.size()-1; ++i) {
             int minI = i;
-            for (int j = i+1; j < arr.length; ++j) {
-                if (arr[j] < arr[minI]) {
+            for (int j = i+1; j < arr.size(); ++j) {
+                if (arr.get(j).compareTo(arr.get(minI)) < 0) {
                     minI = j;
                 }
             }
@@ -30,32 +23,28 @@ public class Sort {
         return arr;
     }
 
-    public static int[] insertionSort(int[] arr) {
-        for (int i = 1; i < arr.length; ++i) {
-            for (int j = i; j > 0 && arr[j-1] > arr[j]; --j) {
-                swap(arr, j, j-1);
-            }
-        }
-        return arr;
-    }
-
-    public static List<Integer> insertionSort(List<Integer> list) {
+    public static <T extends Comparable<T>> List<T> insertionSort(List<T> list) {
         for (int i = 1; i < list.size(); ++i) {
-            for (int j = i; j > 0 && list.get(j-1) > list.get(j); --j) {
+            for (int j = i; j > 0 && list.get(j-1).compareTo(list.get(j)) > 0; --j) {
                 swap(list, j, j-1);
             }
         }
         return list;
     }
 
-    public static int stalinSort(int[] arr) {
+    public static <T extends Comparable<T>> List<T> stalinSort(List<T> arr) {
         int writeIdx = 1;
-        for (int i = 1; i < arr.length; ++i) {
-            if (arr[i] >= arr[writeIdx - 1]) {
-                arr[writeIdx++] = arr[i];
+        for (int i = 1; i < arr.size(); ++i) {
+            if (arr.get(i).compareTo(arr.get(writeIdx - 1)) >= 0) {
+                arr.set(writeIdx++, arr.get(i));
             }
         }
-        return writeIdx;
+
+        while (arr.size() > writeIdx) {
+            arr.remove(writeIdx);
+        }
+
+        return arr;
     }
 
     public static List<Integer> merge(List<Integer> left, List<Integer> right) {
@@ -64,8 +53,10 @@ public class Sort {
         } else if (right.isEmpty()) {
             return left;
         } else if (left.get(left.size()-1) <= right.get(0)) {
-            left.addAll(right);
-            return left;
+            List<Integer> arr = new ArrayList<>();
+            arr.addAll(left);
+            arr.addAll(right);
+            return arr;
         }
 
         List<Integer> list = new ArrayList<>();
@@ -90,9 +81,8 @@ public class Sort {
         if (n <= 1) {
             return list;
         } else if (n <= 5) {
-//            List<Integer> newList = new ArrayList<>(list.size());
-//            newList.addAll(list);
-//            return insertionSort(newList);
+            List<Integer> newList = new ArrayList<>(list);
+            return insertionSort(newList);
         }
 
         List<Integer> left = mergeSort(list.subList(0, n/2));
@@ -101,32 +91,9 @@ public class Sort {
         return merge(left, right);
     }
 
-    private static int[] shuffle(int[] arr) {
-        Random rand = new Random();
-        for (int i=0; i<arr.length; i++) {
-            int randomPosition = rand.nextInt(arr.length);
-            int temp = arr[i];
-            arr[i] = arr[randomPosition];
-            arr[randomPosition] = temp;
-        }
-        return arr;
-    }
-
 
     static class ArrayContainer {
-
-        int[] arr = null;
         List<Integer> list = null;
-
-        private void generateArray(int n) {
-            if (arr == null || arr.length != n) {
-                arr = new int[n];
-                for (int i = 0; i < n; ++i) {
-                    arr[i] = i;
-                }
-            }
-            shuffle(arr);
-        }
 
         private void generateList(int n) {
             if (list == null || list.size() != n) {
@@ -174,34 +141,34 @@ public class Sort {
 
         ArrayContainer arr = new ArrayContainer();
 
-        arr.generateArray(100);
         arr.generateList(100);
-        System.out.println(stalinSort(arr.arr));
-        System.out.println(Arrays.toString(arr.arr));
+        System.out.println(stalinSort(arr.list));
+        System.out.println(arr.list);
 
         for (int i = 0; i < 1000; ++i) {
-            selectionSort(arr.arr);
-            insertionSort(arr.arr);
-            stalinSort(arr.arr);
+            selectionSort(arr.list);
+            insertionSort(arr.list);
+            stalinSort(arr.list);
             mergeSort(arr.list);
+            quickSort(arr.list);
         }
 
-        System.out.printf("n\tselection\tinsertion\tstalin\tmerge\n");
+        System.out.print("n\tselection\tinsertion\tstalin\tmerge\tquick\n");
         for (int i = 100; i <= 2000; i += 100) {
             int n = i;
             TimeIt selectionTimer = new TimeIt(
-                    () -> arr.generateArray(n),
-                    () -> selectionSort(arr.arr)
+                    () -> arr.generateList(n),
+                    () -> selectionSort(arr.list)
             );
 
             TimeIt insertionTimer = new TimeIt(
-                    () -> arr.generateArray(n),
-                    () -> insertionSort(arr.arr)
+                    () -> arr.generateList(n),
+                    () -> insertionSort(arr.list)
             );
 
             TimeIt stalinTimer = new TimeIt(
-                    () -> arr.generateArray(n),
-                    () -> stalinSort(arr.arr)
+                    () -> arr.generateList(n),
+                    () -> stalinSort(arr.list)
             );
 
             TimeIt mergeTimer = new TimeIt(
