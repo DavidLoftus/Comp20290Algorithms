@@ -1,13 +1,15 @@
+import bench.TimeIt;
 import sorting.*;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class Sort {
     static class ArrayContainer {
         List<Integer> list = null;
 
-        private void generateList(int n) {
+        private List<Integer> generateList(int n) {
             if (list == null || list.size() != n) {
                 list = new ArrayList<>(n);
                 for (int i = 0; i < n; ++i) {
@@ -15,6 +17,7 @@ public class Sort {
                 }
             }
             Collections.shuffle(list);
+            return list;
         }
     }
 
@@ -47,14 +50,13 @@ public class Sort {
 
         for (int i = 100; i <= 2000; i += 100) {
             final int n = i;
-            List<TimeIt> timers = sorters.stream().map(
-                    sorter -> new TimeIt(
+            List<Long> times = sorters.stream()
+                    .map(sorter -> TimeIt.run(
+                            TimeUnit.MILLISECONDS.toNanos(250),
                             () -> arr.generateList(n),
-                            () -> sorter.sort(arr.list)
-                    )
-            ).collect(Collectors.toList());
-
-            List<Long> times = timers.stream().map(timer -> timer.run(100)).collect(Collectors.toList());
+                            sorter::sort
+                            ))
+                    .collect(Collectors.toList());
 
             System.out.printf("%5d ", i);
             for (long t : times) {
