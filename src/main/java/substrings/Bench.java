@@ -5,11 +5,12 @@ import bench.TimeIt;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
+import java.util.zip.GZIPInputStream;
 
 public class Bench {
 
     public static void main(String[] args) throws IOException {
-        InputStream inputStream = Bench.class.getResourceAsStream("moby10b.txt");
+        InputStream inputStream = new GZIPInputStream(Bench.class.getResourceAsStream("moby10b.txt.gz"));
         String largeString = new String(inputStream.readAllBytes());
 
         System.out.println("findFirst:");
