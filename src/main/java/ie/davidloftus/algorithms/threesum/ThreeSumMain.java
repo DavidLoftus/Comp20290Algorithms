@@ -1,18 +1,13 @@
-import bench.TimeIt;
+package ie.davidloftus.algorithms.threesum;
 
-import java.io.File;
+import ie.davidloftus.algorithms.bench.TimeIt;
+
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class ThreeSumMain {
 
@@ -35,7 +30,7 @@ public class ThreeSumMain {
             "32Kints.txt"
     };
 
-    public static void forEachTestCase(Consumer<int[]> func) throws FileNotFoundException {
+    public static void forEachTestCase(Consumer<int[]> func) {
         for (String path : samples) {
             System.out.println(path);
             try (Scanner sc = new Scanner(ThreeSumMain.class.getResourceAsStream(path))) {
@@ -49,17 +44,17 @@ public class ThreeSumMain {
         }
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
         forEachTestCase(arr -> {
             long aTime = TimeIt.run(TimeUnit.MILLISECONDS.toNanos(250),
                     () -> arr,
                     ThreeSumA::count);
-            System.out.printf("\tThreeSumA: %.3fms\n", aTime / 1000000.0);
+            System.out.printf("\tie.davidloftus.algorithms.threesum.ThreeSumA: %.3fms\n", aTime / 1000000.0);
 
             long bTime = TimeIt.run(TimeUnit.MILLISECONDS.toNanos(250),
                     () -> arr,
                     ThreeSumB::count);
-            System.out.printf("\tThreeSumB: %.3fms\n", bTime / 1000000.0);
+            System.out.printf("\tie.davidloftus.algorithms.threesum.ThreeSumB: %.3fms\n", bTime / 1000000.0);
         });
     }
 }

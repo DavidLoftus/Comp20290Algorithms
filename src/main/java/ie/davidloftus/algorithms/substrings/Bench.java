@@ -1,6 +1,6 @@
-package substrings;
+package ie.davidloftus.algorithms.substrings;
 
-import bench.TimeIt;
+import ie.davidloftus.algorithms.bench.TimeIt;
 
 import java.io.IOException;
 import java.io.InputStream;

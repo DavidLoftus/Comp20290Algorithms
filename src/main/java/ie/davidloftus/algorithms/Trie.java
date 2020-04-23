@@ -1,10 +1,12 @@
+package ie.davidloftus.algorithms;
+
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class Trie implements Iterable<String> {
 
-    // Sort alphabet based on letter frequency in English language.
+    // ie.davidloftus.algorithms.sorting.Sort alphabet based on letter frequency in English language.
     // Means we can minimize average size of children array.
     private static final String ALPHABET = "ETAOINSRHDLUCMFYWGPBVKXQJZ";
 

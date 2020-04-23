@@ -1,5 +1,7 @@
-import bench.TimeIt;
-import sorting.*;
+package ie.davidloftus.algorithms.sorting;
+
+import ie.davidloftus.algorithms.bench.TimeIt;
+import ie.davidloftus.algorithms.sorting.*;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;

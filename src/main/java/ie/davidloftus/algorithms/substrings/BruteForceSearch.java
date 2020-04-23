@@ -1,4 +1,4 @@
-package substrings;
+package ie.davidloftus.algorithms.substrings;
 
 import java.util.ArrayList;
 import java.util.List;

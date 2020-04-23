@@ -1,7 +1,11 @@
+package ie.davidloftus.algorithms;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+
+import ie.davidloftus.algorithms.Trie;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

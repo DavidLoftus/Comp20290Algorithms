@@ -1,11 +1,11 @@
-package bench;
+package ie.davidloftus.algorithms.bench;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class TimeIt<T> {
 
-    private Supplier<T> setup = null;
+    private Supplier<T> setup;
     private Consumer<T> func;
 
     public TimeIt(Supplier<T> setup, Consumer<T> func) {

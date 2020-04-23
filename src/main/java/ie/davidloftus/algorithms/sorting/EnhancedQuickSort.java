@@ -1,4 +1,4 @@
-package sorting;
+package ie.davidloftus.algorithms.sorting;
 
 import java.util.Collections;
 import java.util.List;
