@@ -110,3 +110,8 @@ class Fib {
 | 19 | 45326     | 2444      |
 
 ![Performance of Recursive and Iterative Fibonacii functions](fib_perf.png)
+
+### Tower of Hanoi
+
+Code for Tower of Hanoi is in
+[ie.davidloftus.algorithms.Recursion](../src/main/java/ie/davidloftus/algorithms/Recursion.java)
