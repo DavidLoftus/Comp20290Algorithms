@@ -1,4 +1,4 @@
-# Practical 4: Elementary Sorting    
+# Practical 4: Elementary Sorting
 
 ### Quick Questions
 
@@ -16,7 +16,7 @@ Algorithm that uses tape or disk during the sort
     2. External/Internal
     3. In place
     4. Time complexity
-    5. Comparison vs Non-comparison 
+    5. Comparison vs Non-comparison
     6. Recursive vs Non recursive
 
 ### Algorithmic Development
