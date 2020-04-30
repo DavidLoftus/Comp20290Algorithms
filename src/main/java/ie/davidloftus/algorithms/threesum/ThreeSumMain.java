@@ -33,7 +33,7 @@ public class ThreeSumMain {
     public static void forEachTestCase(Consumer<int[]> func) {
         for (String path : samples) {
             System.out.println(path);
-            try (Scanner sc = new Scanner(ThreeSumMain.class.getResourceAsStream(path))) {
+            try (Scanner sc = new Scanner(ThreeSumMain.class.getResourceAsStream("../"+path))) {
                 List<Integer> list = new ArrayList<>();
                 int n = sc.nextInt();
                 while (sc.hasNextInt()) {
