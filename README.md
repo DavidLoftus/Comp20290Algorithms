@@ -17,3 +17,13 @@ To run the tests in IntelliJ simply right click any package/class and click "Run
 ### Analyses
 
 The write-ups for all algorithm analysis are in the [analysis](analysis) directory.
+
+- [Lab 1](analysis/lab1.md)
+- [Lab 2](analysis/lab2.md)
+- [Lab 3](analysis/lab3.md)
+- [Lab 4](analysis/lab4.md)
+- [Lab 5](analysis/lab5.md)
+- [Lab 6](analysis/lab6.md)
+- [Lab 7](analysis/lab7.md)
+- [Lab 8](analysis/lab8.md)
+- [Lab 9](analysis/lab9.md)
