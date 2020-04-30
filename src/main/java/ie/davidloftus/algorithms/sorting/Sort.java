@@ -32,6 +32,7 @@ public class Sort {
                 new InsertionSort<>(),
                 new StalinSort<>(),
                 new MergeSort<>(),
+                new MergeSortEnhanced<>(),
                 new QuickSort<>(),
                 new EnhancedQuickSort<>()
         );
@@ -44,11 +45,12 @@ public class Sort {
             }
         }
 
-        System.out.print("    n ");
+        System.out.printf("|%5s |", "n");
         for (Sorter<Integer> sorter : sorters) {
-            System.out.printf("%20s ", sorter.getClass().getSimpleName());
+            System.out.printf("%20s |", sorter.getClass().getSimpleName());
         }
         System.out.println();
+        System.out.println("|------|" + ("-".repeat(21)+"|").repeat(sorters.size()));
 
         for (int i = 100; i <= 2000; i += 100) {
             final int n = i;
@@ -60,9 +62,9 @@ public class Sort {
                             ))
                     .collect(Collectors.toList());
 
-            System.out.printf("%5d ", i);
+            System.out.printf("|%5d |", i);
             for (long t : times) {
-                System.out.printf("%20f ", t / 1000000.0);
+                System.out.printf("%20f |", t / 1000000.0);
             }
             System.out.println();
         }
