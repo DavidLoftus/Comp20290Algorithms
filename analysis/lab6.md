@@ -1,5 +1,25 @@
 # Practical 6: Advanced Sorting Algorithms Part II (Quicksort)
 
+### Initial Implementation
+
+The first implementation can be found in
+[ie.davidloftus.algorithms.sorting.QuickSort](../src/main/java/ie/davidloftus/algorithms/sorting/QuickSort.java)
+
+### Improvements
+
+1. Similar to the improvements in MergeSort, I had the improved quicksort use insertion sort for small arrays.
+
+2. Since QuickSort performs best on an unordered list, we intentionally shuffle the array to avoid worst case
+ performance.
+ 
+3. We chose our pivot to be the middle element. This improves performance when the array is already sorted (but it is
+ kinda useless given the 2nd optimization).
+
+The improved implementation can be found in
+[ie.davidloftus.algorithms.sorting.EnhancedQuickSort](../src/main/java/ie/davidloftus/algorithms/sorting/QuickSortEnhanced.java)
+
+### Performance Analysis
+
 |    n |       SelectionSort |       InsertionSort |          StalinSort |           MergeSort |   MergeSortEnhanced |           QuickSort |   EnhancedQuickSort |
 |------|---------------------|---------------------|---------------------|---------------------|---------------------|---------------------|---------------------|
 |  100 |            0.018155 |            0.037085 |            0.004954 |            0.047858 |            0.017803 |            0.015491 |            0.015531 |
