@@ -115,3 +115,38 @@ class Fib {
 
 Code for Tower of Hanoi is in
 [ie.davidloftus.algorithms.Recursion](../src/main/java/ie/davidloftus/algorithms/Recursion.java)
+
+Here's the output for n=5
+```
+A -> B
+A -> C
+B -> C
+A -> B
+C -> A
+C -> B
+A -> B
+A -> C
+B -> C
+B -> A
+C -> A
+B -> C
+A -> B
+A -> C
+B -> C
+A -> B
+C -> A
+C -> B
+A -> B
+C -> A
+B -> C
+B -> A
+C -> A
+C -> B
+A -> B
+A -> C
+B -> C
+A -> B
+C -> A
+C -> B
+A -> B
+```
