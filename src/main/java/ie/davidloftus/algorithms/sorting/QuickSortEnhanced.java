@@ -3,7 +3,7 @@ package ie.davidloftus.algorithms.sorting;
 import java.util.Collections;
 import java.util.List;
 
-public class EnhancedQuickSort<T extends Comparable<T>> extends QuickSort<T> {
+public class QuickSortEnhanced<T extends Comparable<T>> extends QuickSort<T> {
 
     private List<T> recursiveSort(List<T> arr) {
         if (arr.size() <= 5) {

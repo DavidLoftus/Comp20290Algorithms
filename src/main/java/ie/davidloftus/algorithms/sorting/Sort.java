@@ -1,7 +1,6 @@
 package ie.davidloftus.algorithms.sorting;
 
 import ie.davidloftus.algorithms.bench.TimeIt;
-import ie.davidloftus.algorithms.sorting.*;
 
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -34,7 +33,7 @@ public class Sort {
                 new MergeSort<>(),
                 new MergeSortEnhanced<>(),
                 new QuickSort<>(),
-                new EnhancedQuickSort<>()
+                new QuickSortEnhanced<>()
         );
 
         // Run a few times to get JIT compiler warmed up

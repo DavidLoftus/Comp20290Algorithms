@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SorterTest {
 
     @ParameterizedTest
-    @ValueSource(classes = {SelectionSort.class, InsertionSort.class, MergeSort.class, QuickSort.class, EnhancedQuickSort.class})
+    @ValueSource(classes = {SelectionSort.class, InsertionSort.class, MergeSort.class, QuickSort.class, QuickSortEnhanced.class})
     void sort(Class<? extends Sorter<Integer>> sorterClass) throws ReflectiveOperationException {
         Sorter<Integer> sorter = sorterClass.getConstructor().newInstance();
 
