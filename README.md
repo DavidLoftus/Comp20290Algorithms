@@ -27,3 +27,8 @@ The write-ups for all algorithm analysis are in the [analysis](analysis) directo
 - [Lab 7](analysis/lab7.md)
 - [Lab 8](analysis/lab8.md)
 - [Lab 9](analysis/lab9.md)
+
+# Huffman Project
+
+Local copy of huffman project can be found in [huffman/](huffman) but you can also check the github repo
+[HuffmanCompression](http://github.com/DavidLoftus/HuffmanCompression) (assuming I've unprivated it).
